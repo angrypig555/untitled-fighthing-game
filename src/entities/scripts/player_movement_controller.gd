@@ -9,13 +9,13 @@ var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 @onready var neck := $Neck
 @onready var camera := $Neck/Camera3D
 @onready var arm := $Neck/Camera3D/Arm
-#@onready var spawnsound := $AudioStreamPlayer2D
+@onready var spawnsound := $Neck/SpawnSound
 #not yet implemented, borrowing code from old project
 #@onready var footsteps := $footsteps
 #@onready var jump := $jump
 
-#func _ready() -> void:
-#	spawnsound.play()
+func _ready() -> void:
+	spawnsound.play()
 
 func punch_handler(event: InputEvent) -> void:
 	if event is InputEventMouseButton:

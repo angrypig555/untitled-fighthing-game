@@ -37,4 +37,4 @@ shape = SubResource("ConvexPolygonShape3D_6lts5")
 environment = SubResource("Environment_w2rx4")
 
 [node name="Player" parent="." unique_id=17216726 instance=ExtResource("2_aov5h")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4380677, 0.079579115, -0.25191855)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4380677, 1.7903268, -0.25191855)
