@@ -1,0 +1,70 @@
+extends CharacterBody3D
+
+
+const SPEED = 5.0
+const JUMP_VELOCITY = 4.5
+
+# Get the gravity from the project settings to be synced with RigidDynamicBody nodes.
+var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
+@onready var neck := $Neck
+@onready var camera := $Neck/Camera3D
+@onready var arm := $Neck/Camera3D/Arm
+#@onready var spawnsound := $AudioStreamPlayer2D
+#not yet implemented, borrowing code from old project
+#@onready var footsteps := $footsteps
+#@onready var jump := $jump
+
+#func _ready() -> void:
+#	spawnsound.play()
+
+func punch_handler(event: InputEvent) -> void:
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+			print("left")
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton:
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	elif event.is_action_pressed("ui_cancel"):
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
+		if event is InputEventMouseMotion:
+			neck.rotate_y(-event.relative.x * 0.01)
+			#arm.rotate_y(-event.relative.x * 0.01)
+			#arm.rotate_x(-event.relative.x * 0.01)
+			camera.rotate_x(-event.relative.y * 0.01)
+			camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-90), deg_to_rad(90))
+	punch_handler(event)
+
+#func footstep_handler() -> void:
+#	var is_moving: bool = velocity.x != 0 or velocity.z != 0
+#	if is_on_floor() and is_moving:
+#		if not footsteps.playing:
+#			footsteps.play()
+#	else:
+#		if footsteps.playing:
+#			footsteps.stop()
+
+func _physics_process(delta: float) -> void:
+	# Add the gravity.
+	if not is_on_floor():
+		velocity.y -= gravity * delta
+
+	# Handle Jump.
+	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
+		velocity.y = JUMP_VELOCITY
+		#jump.play()
+
+	# Get the input direction and handle the movement/deceleration.
+	# As good practice, you should replace UI actions with custom gameplay actions.
+	var input_dir := Input.get_vector("left", "right", "forward", "back")
+	var direction = (neck.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	if direction:
+		velocity.x = direction.x * SPEED
+		velocity.z = direction.z * SPEED
+	else:
+		velocity.x = move_toward(velocity.x, 0, SPEED)
+		velocity.z = move_toward(velocity.z, 0, SPEED)
+	
+	move_and_slide()
+	#footstep_handler()

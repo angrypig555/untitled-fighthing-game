@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://dl0u08dbpmlwf"]
+
+[ext_resource type="Script" uid="uid://bqs63qnag1oho" path="res://entities/scripts/player_movement_controller.gd" id="1_merdl"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_u3f3p"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_merdl"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_merdl"]
+albedo_color = Color(0.95686275, 0.8, 0.2627451, 1)
+
+[node name="Player" type="Node3D" unique_id=17216726]
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="." unique_id=2090077654]
+script = ExtResource("1_merdl")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D" unique_id=1052350427]
+shape = SubResource("CapsuleShape3D_u3f3p")
+
+[node name="Neck" type="Node3D" parent="CharacterBody3D" unique_id=1179530867]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.598264, 0)
+
+[node name="Camera3D" type="Camera3D" parent="CharacterBody3D/Neck" unique_id=1136531183]
+
+[node name="Arm" type="Node3D" parent="CharacterBody3D/Neck/Camera3D" unique_id=1665432419]
+transform = Transform3D(0.30659723, 0, 0, 0, 0.37445086, 0, 0, 0, 1, 0.6700716, -0.43422598, -0.46528965)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D/Neck/Camera3D/Arm" unique_id=625744922]
+mesh = SubResource("BoxMesh_merdl")
+surface_material_override/0 = SubResource("StandardMaterial3D_merdl")
