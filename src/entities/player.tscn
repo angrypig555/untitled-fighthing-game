@@ -73,7 +73,7 @@ _data = {
 &"right_arm_swing": SubResource("Animation_rfe5m")
 }
 
-[node name="Player" type="Node3D" unique_id=17216726]
+[node name="Player" type="Node3D" unique_id=17216726 groups=["player"]]
 
 [node name="CharacterBody3D" type="CharacterBody3D" parent="." unique_id=2090077654]
 script = ExtResource("1_merdl")

@@ -41,4 +41,4 @@ environment = SubResource("Environment_w2rx4")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4380677, 1.7903268, -0.25191855)
 
 [node name="Node3D" parent="." unique_id=328470043 instance=ExtResource("3_aov5h")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.445878, 1.015873, -4.0281544)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.445878, 1.5595441, -4.0281544)
