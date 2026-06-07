@@ -2,6 +2,8 @@
 
 [ext_resource type="Script" uid="uid://bqs63qnag1oho" path="res://entities/scripts/player_movement_controller.gd" id="1_merdl"]
 [ext_resource type="AudioStream" uid="uid://cimuoyv24bom6" path="res://resources/sounds/bass.ogg" id="2_b0kkn"]
+[ext_resource type="AudioStream" uid="uid://cd50e06v0m22q" path="res://resources/sounds/swoosh.ogg" id="3_e4p34"]
+[ext_resource type="AudioStream" uid="uid://rtv3jhpn1djs" path="res://resources/sounds/footsteps.mp3" id="4_rfe5m"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_u3f3p"]
 
@@ -32,3 +34,13 @@ surface_material_override/0 = SubResource("StandardMaterial3D_merdl")
 
 [node name="SpawnSound" type="AudioStreamPlayer3D" parent="CharacterBody3D/Neck" unique_id=387274162]
 stream = ExtResource("2_b0kkn")
+
+[node name="ArmSwingSound" type="AudioStreamPlayer3D" parent="CharacterBody3D/Neck" unique_id=1048133360]
+stream = ExtResource("3_e4p34")
+pitch_scale = 1.35
+
+[node name="FootstepSound" type="AudioStreamPlayer3D" parent="CharacterBody3D/Neck" unique_id=665163485]
+stream = ExtResource("4_rfe5m")
+
+[node name="JumpSound" type="AudioStreamPlayer3D" parent="CharacterBody3D/Neck" unique_id=86210885]
+stream = ExtResource("3_e4p34")

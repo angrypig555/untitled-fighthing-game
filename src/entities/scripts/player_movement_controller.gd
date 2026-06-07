@@ -10,9 +10,9 @@ var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 @onready var camera := $Neck/Camera3D
 @onready var arm := $Neck/Camera3D/Arm
 @onready var spawnsound := $Neck/SpawnSound
-#not yet implemented, borrowing code from old project
-#@onready var footsteps := $footsteps
-#@onready var jump := $jump
+@onready var armsound := $Neck/ArmSwingSound
+@onready var footsteps := $Neck/FootstepSound
+@onready var jump := $Neck/JumpSound
 
 func _ready() -> void:
 	spawnsound.play()
@@ -21,6 +21,8 @@ func punch_handler(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 			print("left")
+			armsound.play()
+
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
@@ -36,14 +38,14 @@ func _unhandled_input(event: InputEvent) -> void:
 			camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-90), deg_to_rad(90))
 	punch_handler(event)
 
-#func footstep_handler() -> void:
-#	var is_moving: bool = velocity.x != 0 or velocity.z != 0
-#	if is_on_floor() and is_moving:
-#		if not footsteps.playing:
-#			footsteps.play()
-#	else:
-#		if footsteps.playing:
-#			footsteps.stop()
+func footstep_handler() -> void:
+	var is_moving: bool = velocity.x != 0 or velocity.z != 0
+	if is_on_floor() and is_moving:
+		if not footsteps.playing:
+			footsteps.play()
+	else:
+		if footsteps.playing:
+			footsteps.stop()
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -53,7 +55,7 @@ func _physics_process(delta: float) -> void:
 	# Handle Jump.
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
-		#jump.play()
+		jump.play()
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
@@ -67,4 +69,4 @@ func _physics_process(delta: float) -> void:
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 	
 	move_and_slide()
-	#footstep_handler()
+	footstep_handler()
