@@ -13,6 +13,7 @@ var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 @onready var armsound := $Neck/ArmSwingSound
 @onready var footsteps := $Neck/FootstepSound
 @onready var jump := $Neck/JumpSound
+@onready var animations := $Neck/AnimationPlayer
 
 func _ready() -> void:
 	spawnsound.play()
@@ -22,6 +23,7 @@ func punch_handler(event: InputEvent) -> void:
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 			print("left")
 			armsound.play()
+			animations.play("right_arm_swing")
 
 
 func _unhandled_input(event: InputEvent) -> void:
