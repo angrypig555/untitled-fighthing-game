@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://dlhaxb6waq7et" path="res://resources/1eprhbtmvoo51.png" id="1_puv2y"]
 [ext_resource type="PackedScene" uid="uid://dl0u08dbpmlwf" path="res://entities/player.tscn" id="2_aov5h"]
+[ext_resource type="PackedScene" uid="uid://brosv3ehdweyd" path="res://entities/evil_bean.tscn" id="3_aov5h"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_5ba5c"]
 
@@ -38,3 +39,6 @@ environment = SubResource("Environment_w2rx4")
 
 [node name="Player" parent="." unique_id=17216726 instance=ExtResource("2_aov5h")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4380677, 1.7903268, -0.25191855)
+
+[node name="Node3D" parent="." unique_id=328470043 instance=ExtResource("3_aov5h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.445878, 1.015873, -4.0281544)

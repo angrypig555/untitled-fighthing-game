@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://brosv3ehdweyd"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_ge7tk"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ge7tk"]
+albedo_color = Color(0.8996733, 5.7275593e-06, 9.62615e-07, 1)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ocnuk"]
+
+[node name="Node3D" type="Node3D" unique_id=328470043]
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="." unique_id=1855792975]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D" unique_id=387670752]
+mesh = SubResource("CapsuleMesh_ge7tk")
+surface_material_override/0 = SubResource("StandardMaterial3D_ge7tk")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D" unique_id=936155407]
+shape = SubResource("CapsuleShape3D_ocnuk")
+
+[node name="Label3D" type="Label3D" parent="CharacterBody3D" unique_id=286141482]
+transform = Transform3D(-4.3711385e-08, 0, 0.99999994, 0, 1, 0, -0.99999994, 0, -4.3711385e-08, 0, 1.2604824, 0)
+text = "evil bean"
+
+[node name="Label3D2" type="Label3D" parent="CharacterBody3D" unique_id=1004972695]
+transform = Transform3D(-4.3711385e-08, 0, 0.99999994, 0, 1, 0, -0.99999994, 0, -4.3711385e-08, 0, 1.4883538, 0)
+text = "HP: (insert hp here)"
